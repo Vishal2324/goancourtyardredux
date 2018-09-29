@@ -1,15 +1,44 @@
 import '@babel/polyfill';
+import 'promise-polyfill';
 import React from 'react';
 import ReactDOM from "react-dom";
 import {Provider} from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import allReducers from './js/reducers';
 import App from './route.js';
-import mySaga from './js/sagas/sagas';
+import {applyRouterMiddleware, Router, BrowserHistory} from 'react-router';
+import configureStore from  './configureStore';
+import reactRoutes from './route';
+// import {useScroll} from 'react-router-scroll';
 
-// create the saga middleware
+const store = configureStore(initialState, BrowserHistory);
+var rootroute = {component : App, childRoutes : reactRoutes(store)};
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Router history={BrowserHistory} routes={rootroute} render={applyRouterMiddleware()}/>
+	</Provider>
+	,document.getElementById('root'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*// create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // initial store setup
@@ -26,4 +55,4 @@ ReactDOM.render(
 	<Provider store={store}>
 		<App />
 	</Provider>
-	,document.getElementById('root'));
+	,document.getElementById('root'));*/
