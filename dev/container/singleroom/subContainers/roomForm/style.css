@@ -1,0 +1,16 @@
+.forminput{
+    border:none;
+    border-bottom: 1px solid #888;
+    border-radius: 0px;	
+    -webkit-box-shadow: none;
+    font-size: 16px;
+}
+
+.forminput:focus{
+    -webkit-box-shadow: none;
+    border-color: #30a077;
+}
+
+.forminput::-webkit-input-placeholder {
+   font-family: 'Playfair Display', serif !important;
+}

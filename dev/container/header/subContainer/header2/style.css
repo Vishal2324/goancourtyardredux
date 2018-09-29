@@ -1,0 +1,35 @@
+.navhomelink{
+    font-size: 12px;
+    min-height: 70px;
+    background-color: rgba(255,255,255,.77);
+    z-index: 99;
+    line-height: 54px;
+    margin-bottom: 1px;
+    padding-top: 20px;
+    padding-bottom: 65px;
+    position: absolute;
+    width:100%;
+    margin-top: 150px;
+}
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.pagelink{
+    font-size: 1.5em !important;
+    text-transform: uppercase;
+}
+
+.pagelink:hover {
+    color: #000000 !important;
+    -moz-transition: all 0.3s ease-in;
+      /* WebKit */
+    -webkit-transition: all 0.3s ease-in;
+      /* Opera */
+    -o-transition: all 0.3s ease-in;
+      /* Standard */
+    transition: all 0.3s ease-in;
+  }

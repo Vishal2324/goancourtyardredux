@@ -1,0 +1,22 @@
+.mainmodal{
+    width: auto;
+    margin: 0% 0%;
+}
+
+.mainmodalcross{
+    margin-top: 10px;
+    margin-right: 12px;
+    font-size: 3.5em;
+}
+
+.bookingclosebtn{
+    position: relative;
+    height: 50px;
+    width: 165px;
+    border: 1px solid #82786f;
+    background-color: #eff0f1;
+    border-radius: 3px !important;
+    color: #82786f;
+    font-family: 'Oswald',sans-serif;
+    font-size: 1.2em;
+}

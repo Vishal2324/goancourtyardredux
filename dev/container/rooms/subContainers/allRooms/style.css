@@ -1,0 +1,18 @@
+.nomarginbottom{
+    margin-bottom: 5px;
+}
+
+.bookmarkRibbon {  
+    position: absolute;
+    text-align: center;
+    z-index: 15;
+    width: 35%;
+    top:60%;
+    padding-bottom: 2px;
+    right:0%;
+    background-color: #002c5cd1;
+    min-height: 40px;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 3px;          /* Increase element Width */
+}

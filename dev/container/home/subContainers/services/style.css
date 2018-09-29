@@ -1,0 +1,73 @@
+.servediv{
+    min-height: 400px; 
+    padding: 0%;
+    overflow: hidden;
+}
+
+.servedivimg{
+    height: 400px; 
+    width: 100%;
+}
+
+.serviceimgopacity{
+    position: absolute;
+    padding: 2% 2%;
+    z-index: 15;
+    width: 100%;
+    left:0%;
+    background: linear-gradient(350deg, #12509473, #75222263);
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.contactback{
+    width: 100%;
+    height: 500px;
+}
+
+.servicemove{
+    margin-top: 300px;
+    padding: 3%;
+}
+
+.serviceimgopacity:hover{
+    background-color: #002c5ca1;
+}
+
+.serviceimgopacity:hover .servicemove{
+    margin-top: 100px;
+    margin-left: 20px;
+    border-left: 2px solid #fff;
+    -webkit-transition: all 0.25s ease-in;
+    -o-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+    text-decoration: none !important;
+}
+
+.serviceimgopacity:hover .servicep{
+    margin-top: 10px;
+    -webkit-transition: all 0.25s ease-in;
+    -o-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+    text-decoration: none !important;
+}
+
+.servicebtnmove{
+    background-color: transparent !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+    font-size: 0.8em;
+    padding: 3% 8%;
+}
+
+.serviceh{
+    font-size: 1.8em;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.servicep{
+    margin-top: 50px;
+    color: #fff;
+}

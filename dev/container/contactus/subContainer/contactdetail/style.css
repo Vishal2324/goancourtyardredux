@@ -1,0 +1,12 @@
+.divider {
+    margin: 30px 0;
+}
+
+.divider .line1 {
+    width: 50px;
+}
+.divider .line1, .divider .line2 {
+    height: 1px;
+    background-color: rgb(48, 160, 119);
+    margin: 3px auto;
+}

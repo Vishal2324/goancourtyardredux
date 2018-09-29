@@ -1,0 +1,19 @@
+.roomimgopa:hover  {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.roomimgopa{
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+.newbookroombtn{
+    height: 45px;
+    border: 2px solid #12b595;
+    background-color: #12b595;
+    color: #fff;
+    font-family: DINlight;
+    width: 50%;
+    font-size: 1.6em;
+}

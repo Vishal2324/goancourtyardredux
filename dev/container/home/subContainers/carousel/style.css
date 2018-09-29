@@ -1,0 +1,11 @@
+.carimage{
+    height: 550px;
+}
+.carousel-caption{
+    bottom: 150px;
+    background: linear-gradient(262deg, #000, transparent);
+    padding: 20px 100px;
+  }
+.carousel-caption h1{
+    font-size:4em;
+}

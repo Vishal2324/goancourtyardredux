@@ -1,0 +1,14 @@
+.aboutoverlay{
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.1);
+    padding-top: 20%;
+    text-align: center;
+}
+
+.contactback{
+    width: 100%;
+    height: 500px;
+}

@@ -1,0 +1,248 @@
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import {Router, Route, NavLink, BrowserRouter, Switch, Redirect} from "react-router-dom";
+import Slider from 'react-slick';
+
+class Rooms extends Component {
+
+    constructor() {
+      super();
+      this.state = {
+        roompagearr : []
+      }
+      this.renderdom = this.renderdom.bind(this);
+    }
+
+    renderdom() {
+        var roomstemp = [];
+        var roomobj = {};
+        var servicesettings = {
+          dots: false,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          autoplay:true,
+          centerMode:false,
+          lazyLoad:false,
+        }
+        
+        if (!this.props.home) {
+          return (<div></div>);
+        }
+        
+        if(this.props.home.roomcontent.length > 0){
+            this.props.home.roomcontent.map((roomtype,i)=>
+                {
+                    if(roomstemp.indexOf(roomtype.roomID) == -1){
+                        var roomimages = [];
+                        this.props.home.roomcontent.map((roomimg,j)=>
+                            {
+                                if(roomtype.roomID == roomimg.roomID){
+                                    roomimages.push({imgalt: roomimg.imageAlt , imagetype : roomimg.imageType , imageurl : roomimg.imageURL});
+                                }
+                            }
+                        )
+                        roomobj = roomtype
+                        roomobj.images = [];
+                        roomobj.images = roomimages
+                        this.state.roompagearr.push(roomobj);
+                        roomstemp.push(roomtype.roomID);
+                    }
+                }
+            )
+            this.state.roompagearr.map((icon,k)=>
+                {
+                    var roomamenity = [];
+                    icon.amenitypng = [];
+                    roomamenity = icon.roomAmenties.split('^');
+                    for(var l=0;l<roomamenity.length;l++){
+                        if(roomamenity[l] == "Wifi"){
+                          icon.amenitypng.push({img : 'wifi.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "In Apartment Kitchen"){
+                            icon.amenitypng.push({img : 'kitchen.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "Room Service"){
+                            icon.amenitypng.push({img : 'roomservice.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "24x7 Security"){
+                            icon.amenitypng.push({img : 'security.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "24x7 Reception"){
+                            icon.amenitypng.push({img : 'reception.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "Gym"){
+                            icon.amenitypng.push({img : 'gym.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "Free Breakfast"){
+                            icon.amenitypng.push({img : 'breakfast.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "Swimming Pool"){
+                            icon.amenitypng.push({img : 'swim.png' , tooltip : roomamenity[l]});
+                        }
+                        if(roomamenity[l] == "Free Meals"){
+                            icon.amenitypng.push({img : 'food.png' , tooltip : roomamenity[l]});
+                        }
+                    }
+                }
+            )
+        }
+
+        return (
+            <div>
+                <div className="aboutoverlay">
+                    <h1 style={{color: '#ffffff',fontSize: '4.5em',fontWeight:700,textAlign:'center'}}>Accommodations</h1>
+                    <p style={{textAlign:'center',color: '#ffffff',fontSize: '1.4em',fontWeight:'500'}}>Home / Accommodations</p>
+                    <br/>
+                </div>
+                <div>
+                    <img src="images/contactbg.jpeg" className="contactback" alt="roomsBackground"/>
+                </div>
+                <br/>
+                <br/>
+                <div className="container divalignment">
+                    <div className="row needpadding webview">
+                        <h2 style={{textAlign:'left',fontSize:'2.5em',color:'rgb(0, 44, 92)'}}>{ReactHtmlParser(ReactHtmlParser(this.props.home.roomcontentpara.h1sa))}</h2>
+                        <hr/>
+                        <div style={{padding:'10px 5px'}}>
+                            <p style={{fontSize:'1.2em',textAlign:'justify'}}>{ReactHtmlParser(ReactHtmlParser(this.props.home.roomcontentpara.h2sacontent))}</p>
+                        </div>
+                        <br/>
+                        <br/>
+                    </div>
+                    <br/> 
+                    <div className="row needpadding">
+                        <div className="col-sm-3" style={{boxShadow: 'rgba(153, 153, 153, 0.48) 3px 2px 6px',padding: '10px 20px'}}>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                    <i className="fa fa-phone pull-left" style={{fontSize: '4em', color: 'rgb(18, 181, 149)'}}></i>
+                                </div>
+                                <div className="col-sm-9">
+                                    <h3 style={{color:'rgb(0, 44, 92)',fontSize: '1.5em',fontWeight:'600'}}>BUISNESS CENTRE</h3>
+                                </div>
+                            </div>
+                            <hr style={{borderTop:'1px solid #002c5cd1'}}/>
+                            <p style={{textAlign:'justify',fontSize:'1.2em'}}>Our business centre will let you organise and conduct your meetings and seminars to its best and flawless.</p>
+                        </div>
+                        <div className="col-sm-3" style={{boxShadow: 'rgba(153, 153, 153, 0.48) 3px 2px 6px',padding: '10px 20px'}}>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                    <i className="material-icons pull-left" style={{fontSize: '4em', color: 'rgb(18, 181, 149)'}}></i>
+                                </div>
+                                <div className="col-sm-9">
+                                    <h3 style={{color:'rgb(0, 44, 92)',fontWeight:'600',fontSize: '1.5em'}}>CENTRAL LOCATIONS</h3>
+                                </div>
+                            </div>
+                            <h3 style={{color:'rgb(0, 44, 92)',fontWeight:'600'}}> </h3>
+                            <hr style={{borderTop:'1px solid #002c5cd1'}}/>
+                            <p style={{textAlign:'justify',fontSize:'1.2em'}}>Our business centre will let you organise and conduct your meetings and seminars to its best and flawless.</p>
+                        </div>
+                        <div className="col-sm-3" style={{boxShadow: 'rgba(153, 153, 153, 0.48) 3px 2px 6px',padding: '10px 20px'}}>       
+                            <div className="row">
+                                <div className="col-sm-3">
+                                    <i className="fa fa-cutlery pull-left" style={{fontSize: '4em', color: 'rgb(18, 181, 149)'}}></i>
+                                </div>
+                                <div className="col-sm-9">
+                                    <h3 style={{color:'rgb(0, 44, 92)',fontWeight:'600',fontSize: '1.5em'}}>GREAT AMENITIES</h3>
+                                </div>
+                            </div> 
+                            <hr style={{borderTop:'1px solid #002c5cd1'}}/>
+                            <p style={{textAlign:'justify',fontSize:'1.2em'}}>Our business centre will let you organise and conduct your meetings and seminars to its best and flawless.</p>
+                        </div>
+                        <div className="col-sm-3" style={{boxShadow: 'rgba(153, 153, 153, 0.48) 3px 2px 6px',padding: '10px 20px'}}>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                    <i className="fa fa-building-o pull-left" style={{fontSize: '4em', color: 'rgb(18, 181, 149)'}}></i>
+                                </div>
+                                <div className="col-sm-9">
+                                    <h3 style={{color:'rgb(0, 44, 92)',fontWeight:'600',fontSize: '1.5em'}}>Affordable Prices</h3>
+                                </div>
+                            </div>
+                            <hr style={{borderTop:'1px solid #002c5cd1'}}/>
+                            <p style={{textAlign:'justify',fontSize:'1.2em'}}>Our business centre will let you organise and conduct your meetings and seminars to its best and flawless.</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div className="row needpadding">
+                        <h2 style={{textAlign:'left',textTransform:'uppercase',fontSize: '3em',fontWeight:'600',color: 'rgb(0, 44, 92)'}}>accommodations</h2>
+                        <br/>
+                        <div>
+                            {
+                                this.state.roompagearr.map((roomtype,i)=>
+                                    <div>
+                                        <div id={'roomtarget' + i} className="row" style={{boxShadow: '3px 2px 6px #999',backgroundColor:'#007aff12'}}>
+                                            <div className="col-sm-6" style={{padding:'2px 3px'}}>
+                                                <Slider {...servicesettings} className="multiple-items nomarginbottom" style={{marginBottom:'-5px'}}>
+                                                    {
+                                                        roomtype.images.map((roomtypeimg,i)=>
+                                                            <div>
+                                                                <img className="" alt={roomtypeimg.imgalt} style={{width: '100%',height: '280px'}} src={'http://res.cloudinary.com/' + this.props.home.admin.data.cloud_name + '/image/upload/w_600,h_355,c_fill/reputize/room/' + roomtypeimg.imageurl + '.jpeg'}/>
+                                                            </div>
+                                                        ) 
+                                                    }
+                                                </Slider>
+                                            </div>
+                                            <div className="col-sm-6" style={{marginTop:'5px',padding:'30px 50px'}}>
+                                                <div className="bookmarkRibbon">
+                                                    <NavLink style={{cursor: 'pointer'}} to={{pathname : roomtype.room_url}}><h3 style={{color:'#fff'}}>BOOK NOW</h3></NavLink>
+                                                </div>
+                                                <h3 style={{color:'#000',marginTop:'0px',textAlign:'left',textTransform:'uppercase',fontSize:'2.3em'}}>{roomtype.roomType}</h3>
+                                                <hr style={{borderTop:'1px solid #002c5cd1'}} className="webview"/>
+                                                <br/>
+                                                <div className="row" style={{textAlign:'center'}}>
+                                                    {
+                                                        roomtype.amenitypng.map((amen,i)=>
+                                                            <div className="col-xs-2 col-sm-2">
+                                                                <img src={'/images/' + amen.img} style={{height:'30px',width:'30px'}} title={amen.tooltip}/>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </div>
+                                                <br/>
+                                                <p style={{fontSize:'1.2em',color:'#000',fontWeight:'500'}}>INR <font style={{fontSize:'1.8em'}}>{roomtype.roomPriceINR}</font> / Night</p>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                )
+                            } 
+                        </div>
+                        <div className="mobileview" style={{padding:'10px 0px'}}>
+                            <h2 style={{textAlign:'left',fontSize:'2.5em',color:'rgb(0, 44, 92)'}}>Budget Hotels in Anandpur Sahib</h2>
+                            <hr/>
+                            <p style={{fontSize:'1.4em',textAlign:'justify'}}>{ReactHtmlParser(ReactHtmlParser(this.props.home.roomcontentpara.sacontent))}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    render() {
+        return (
+            <div>
+                {this.renderdom()}
+            </div>
+        );
+    }
+
+}
+
+
+// Get apps state and pass it as props to UserList
+//      > whenever state changes, the UserList will automatically re-render
+function mapStateToProps(state) {
+    return {
+        home: state.home
+    };
+}
+
+// We don't want to return the plain UserList (component) anymore, we want to return the smart Container
+//      > UserList is now aware of state and actions
+export default connect(mapStateToProps)(Rooms);

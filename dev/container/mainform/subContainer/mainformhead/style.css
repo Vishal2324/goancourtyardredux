@@ -1,0 +1,11 @@
+.bookinglogo{
+    display: inline;
+    background-color:#3b4868;
+    border: 1px solid #656e82;
+    box-shadow: 0.5px 1.5px 0.5px 0.5px #6e727b;
+    top:-15px;
+    height:130px;
+    margin-top: 30px;	
+    width:250px;
+    padding: 15px 55px;
+}
