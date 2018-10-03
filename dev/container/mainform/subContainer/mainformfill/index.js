@@ -13,8 +13,12 @@ class FormFill extends Component {
         super();
         this.state = {
             mainemail : '',
-            mainname : ''
+            mainname : '',
+            loading : false
         }
+        this.emailChange = this.emailChange.bind(this);
+        this.nameChange = this.nameChange.bind(this);
+        this.formSubmit = this.formSubmit.bind(this);
     }   
     
     emailChange(e) {
@@ -24,6 +28,10 @@ class FormFill extends Component {
 
     nameChange(e) {
         this.setState({mainname: e.target.value});
+    }
+
+    formSubmit(e){
+        e.preventDefault();
     }
 
     renderdom() {
@@ -43,7 +51,7 @@ class FormFill extends Component {
                     <br/>
                     <div className="row">
                         <div className="col-xs-12 col-sm-12">
-                            <Button loading={this.state.loading} style={{fontSize:'1.2em'}} bsStyle="info" className="btn btn-block" disabled={this.state.invalidbook == true} onClick={this.reservation}>Proceed</Button>
+                            <Button loading={this.state.loading} style={{fontSize:'1.2em'}} bsStyle="info" className="btn btn-block" onClick={this.formSubmit}>Proceed</Button>
                         </div>
                     </div>
                     {/*<ToastContainer />*/}

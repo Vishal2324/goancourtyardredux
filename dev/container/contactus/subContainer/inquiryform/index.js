@@ -58,6 +58,7 @@ class InquiryForm extends Component {
                     />
                 {/* <div style={{marginTop:'5px'}}><span style={{color:'#d41b1b'}}>{this.state.phoneError}</span></div> */}
                 <br/>
+                <br/>
                 <textarea id="formmessage" type="text" className="form-control forminput" placeholder="Enter Message" rows="5" onChange={this.formUserMessage}></textarea>
                 {/* <div style={{marginTop:'5px'}}><span style={{color:'#d41b1b'}}>{this.state.messageError}</span></div> */}
                     <br/>

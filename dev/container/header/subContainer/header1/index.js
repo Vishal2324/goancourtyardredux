@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './style.css';
+import { Profile } from './subContainer';
 
 class Carousel extends Component {
 
@@ -25,19 +26,7 @@ class Carousel extends Component {
                     <img style={{height:'65px'}} src={'https://res.cloudinary.com/' + this.props.header.admin.cloud_name + '/image/upload/h_100,w_219,c_fill/reputize/logo/' + this.props.header.admin.logo_img + '.png'} />
                   </div>
                   <ul className={['nav', 'navbar-nav', 'navbar-right'].join(' ')} style={{display: 'inline-block'}}>
-                    {/*<li>
-                      <div className="" style={{backgroundColor: '#fff',padding: '0px 15px'}}>
-                        <img src="/" style={{height:'40px',width:'40px',backgroundColor:'#ddd',borderRadius:'50%'}} />
-                        <i className="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"  aria-hidden="true" style={{color:'#888',fontSize:'2em',marginLeft:'10px'}}></i>
-                        <ul className="dropdown-menu">
-                          <li style={{backgroundColor:'#ddd'}}>
-                            <p></p>
-                          </li>
-                          <li><a href="#">Dashboard</a></li>
-                          <li><a href="#">Log Out <i className="fa fa-sign-out" aria-hidden="true"></i></a></li>
-                        </ul>
-                      </div>
-                    </li>*/} 
+                    {/* <Profile /> */}
                     <li><NavLink to={{pathname: '/login'}} style={{color:'#fff',fontSize:'1.5em',textTransform:'uppercase'}}>Login <i className="fa fa-sign-in" aria-hidden="true"></i></NavLink></li>
                     <li><button className="reservebtn" data-toggle="modal" data-target="#myModal">RESERVATIONS</button></li> 
                   </ul> 

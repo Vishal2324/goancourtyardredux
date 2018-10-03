@@ -10,13 +10,39 @@ class HomeMap extends Component {
     constructor(){
         super();
         this.state = {
-            nearby : {place : 'hospital', icon : 'hospitals'}
+            nearby : {place : 'hospital', icon : 'hospitals'},
+            hospitalSelect : 'mapselect',
+            schoolSelect : 'mapunselect',
+            shoppingSelect : 'mapunselect'
         }
         this.updateMap = this.updateMap.bind(this);
     }
 
     updateMap(data){
-        this.setState({nearby : data})
+        if(data.place == 'school'){
+            this.setState({
+                nearby : data,
+                hospitalSelect : 'mapunselect',
+                schoolSelect : 'mapselect',
+                shoppingSelect : 'mapunselect'
+            })
+        }
+        if(data.place == 'shopping_mall'){
+            this.setState({
+                nearby : data,
+                hospitalSelect : 'mapunselect',
+                schoolSelect : 'mapunselect',
+                shoppingSelect : 'mapselect'
+            })
+        }
+        if(data.place == 'hospital'){
+            this.setState({
+                nearby : data,
+                hospitalSelect : 'mapselect',
+                schoolSelect : 'mapunselect',
+                shoppingSelect : 'mapunselect'
+            })
+        }
     }
 
     renderdom() {
@@ -24,9 +50,9 @@ class HomeMap extends Component {
             <div>
                 <div className="container-fluid">
                     <div className="container-fluid nopadding">
-                        <HospitalMap Onclick={()=>{this.updateMap({place : 'hospital', icon : 'hospitals'})}}/>
-                        <SchoolMap Onclick={()=>{this.updateMap({place : 'school', icon : 'blue'})}}/>
-                        <ShopMap Onclick={()=>{this.updateMap({place : 'shopping_mall', icon : 'green'})}}/>
+                        <HospitalMap class={this.state.hospitalSelect} Onclick={()=>{this.updateMap({place : 'hospital', icon : 'hospitals'})}}/>
+                        <SchoolMap class={this.state.schoolSelect} Onclick={()=>{this.updateMap({place : 'school', icon : 'blue'})}}/>
+                        <ShopMap class={this.state.shoppingSelect} Onclick={()=>{this.updateMap({place : 'shopping_mall', icon : 'green'})}}/>
                         <MapAttraction/>
                     </div>
                     <div className="nearattract">

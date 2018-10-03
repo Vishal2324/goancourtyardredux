@@ -1,0 +1,15 @@
+.videooverlay{
+    position: absolute;
+    padding: 0px;
+    z-index: 15;
+    width: 100%;
+    left:0%;
+    background-color: #6c6e7366;
+    height: 400px;
+    overflow: hidden;
+    margin-left: -25px;
+}
+
+.videomargin{
+    margin-left: -25px;
+}

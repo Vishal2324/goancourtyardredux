@@ -12,7 +12,7 @@ class HospitalMap extends Component {
     }
     renderdom() {
         return (
-            <div id="hospital" className={['col-xs-4','col-sm-3','mapunselect'].join(' ')} style={{cursor:'pointer'}} onClick={this.props.Onclick}>
+            <div id="hospital" className={['col-xs-4','col-sm-3',(this.props.class)].join(' ')} style={{cursor:'pointer'}} onClick={this.props.Onclick}>
                 <a style={{color:'#fff',cursor:'pointer',fontSize:'1.3em'}}><i className="fa fa-hospital-o" aria-hidden="true"></i>{ReactHtmlParser('&nbsp;')} Hospitals</a>
             </div>
         );

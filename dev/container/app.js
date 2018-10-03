@@ -27,17 +27,7 @@ const App = () => (
 	<BrowserRouter>
 	    <div>
 	        <Header/>
-	        <Switch>
-	        	<Route exact path={'/'} component={Home}/>
-				<Route exact path={'/our-apartments'} component={Rooms}/>
-	            <Route exact path={'/studio-apartment'} component={SingleRoom}/>
-	            <Route exact path={'/2bhk-apartment'} component={SingleRoom}/>
-	            <Route exact path={'/penthouse-1bhk-apartment'} component={SingleRoom}/>
-	            <Route exact path={'/about-us'} component={AboutUs}/>
-	            <Route exact path={'/contact-us'} component={ContactUs}/>
-	            <Route exact path={'/gallery'} component={MainGallery}/>
-				<Route exact path={'/login'} component={Login}/>
-	        </Switch>
+                {React.cloneElement(this.props.children, {key : this.props.location.path})}
 	        <MainForm/>
 	        <Footer/>
 	    </div>
