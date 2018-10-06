@@ -22,9 +22,28 @@ export default function reactRoutes(store) {
 					console.log(error);
 				})
 			}	
+		},
+		{
+			//route configuration
+			path : '/our-apartments',
+			name : 'our-apartments',
+			getComponent(nextState, callback) {
+				const importModule = promise.all([
+					import('./container/rooms')
+				]);
+				const moduleRoutes = loadModule(callback);
+				importModule.then( ([component])=>{
+					loadModule(component);
+				})
+				importModule.catch((error)=>{
+					console.log(error);
+				})
+			}	
 		}
 	];
 }
+
+
 
 {/* <Switch>
 	<Route exact path={'/our-apartments'} component={Home}/>

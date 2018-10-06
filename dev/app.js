@@ -1,20 +1,26 @@
 import '@babel/polyfill';
 import 'promise-polyfill';
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import React from 'react';
 import ReactDOM from "react-dom";
 import {Provider} from 'react-redux';
 import App from './route.js';
-import {applyRouterMiddleware, Router, BrowserHistory} from 'react-router';
+
 import configureStore from  './configureStore';
 import reactRoutes from './route';
 // import {useScroll} from 'react-router-scroll';
+require('es6-promise').polyfill();
 
-const store = configureStore(initialState, BrowserHistory);
+const initialState = {};
+const store = configureStore(initialState, browserHistory);
 var rootroute = {component : App, childRoutes : reactRoutes(store)};
+
+console.log(store, "store =========================")
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router history={BrowserHistory} routes={rootroute} render={applyRouterMiddleware()}/>
+		{console.log(browserHistory, "browserHistory")}
+		<Router history={browserHistory} routes={rootroute} render={applyRouterMiddleware()}/>
 	</Provider>
 	,document.getElementById('root'));
 
