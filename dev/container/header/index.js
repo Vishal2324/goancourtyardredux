@@ -27,7 +27,8 @@ class Header extends Component {
     render() {
         return (
             <div>
-                {this.renderdom()}
+                {/* {this.renderdom()} */}
+                header
             </div>
         );
     }

@@ -7,25 +7,38 @@ const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
 
-    const middleware = [sagaMiddleware, routerMiddleware(history)];
 
-    const enhancer = applyMiddleware(...middleware);
+    const middlewares = [
+        sagaMiddleware,
+        routerMiddleware(history),
+      ];
 
-    const composeEnhancer = (process.env.NODE_ENV === 'production' && typeof window === 'object' &&
+    const enhancers = [
+        applyMiddleware(...middlewares),
+      ];
 
-        (window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__({shouldHotReload : false}) : compose)
-    );  
+    const composeEnhancers =
+    process.env.NODE_ENV !== 'production' &&
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          // TODO: Try to remove when `react-router-redux` is out of beta, LOCATION_CHANGE should not be fired more than once after hot reloading
+          // Prevent recomputing reducers for `replaceReducer`
+          shouldHotReload: false,
+        })
+      : compose;
 
-const store = createStore(
-  createReducer(),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
- );
-    // const store = createStore(createReducer(),  window.__REDUX_DEVTOOLS_EXTENSION__());
+        const store = createStore(
+            createReducer(),
+            initialState,
+            composeEnhancers(...enhancers),
+        );
 
-    store.runSaga = sagaMiddleware.run;
-    store.injectedReducer = {};
-    store.asyncReducers = {};
-    store.injectedSagas = {};
+
+        store.runSaga = sagaMiddleware.run;
+        store.injectedReducer = {};
+        store.asyncReducers = {};
+        store.injectedSagas = {};
 
     return store; 
 }

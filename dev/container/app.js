@@ -1,37 +1,38 @@
 import React from 'react';
-import {Router, Route, NavLink, BrowserRouter, Switch, Redirect} from "react-router-dom";
-import Home from './container/home';
-import Header from './container/header';
-import Rooms from './container/rooms';
-import SingleRoom from './container/singleroom';
-import AboutUs from './container/aboutus';
-import ContactUs from './container/contactus';
-import MainGallery from './container/Gallery';
-// import Rooms from '../containers/rooms';
-// import Room from '../containers/room';
-// import About from '../containers/about';
-// import Contact from '../containers/contact';
-// import Login from '../containers/login';
-// import Header from '../containers/header';
-// import MainHeader from '../containers/mainheader';
-import MainForm from './container/mainform';
-import Footer from './container/footer';
-// import Footer from '../containers/footer';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/js/bootstrap.min.js';
-// require('../scss/style.scss');
-import './style.scss';
-import Login from './container/login';
+import Header from './header';
+import PropTypes from 'prop-types';
 
-const App = () => (
-	<BrowserRouter>
-	    <div>
-	        <Header/>
-                {React.cloneElement(this.props.children, {key : this.props.location.path})}
-	        <MainForm/>
-	        <Footer/>
-	    </div>
-    </BrowserRouter>
-);
 
-export default App;
+import MainForm from './mainform';
+import Footer from './footer';
+
+class App extends React.Component {
+	constructor(props) {
+	  super(props);
+	  this.state = {};
+	}
+  
+  
+	render() {
+	  const path = this.props.location.pathname;
+	  return (
+		<div>
+			<Header/>
+			{React.cloneElement(this.props.children, {
+				key: path,
+		  	})}
+			<MainForm/>
+			<Footer/>
+		</div>
+
+	  );
+	}
+  }
+  
+  App.propTypes = {
+	location: PropTypes.object.isRequired,
+	children: PropTypes.element.isRequired,
+  };
+  
+  
+  export default App;

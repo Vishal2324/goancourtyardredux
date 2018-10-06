@@ -1,14 +1,10 @@
 import {combineReducers} from 'redux';
-import {formJS} from 'immutable';
-import {lOCATION_CHANGE} from 'react-router-redux';
-/*
- * We combine all reducers into a single object before updated data is dispatched (sent) to store
- * Your entire applications state (store) is just whatever gets returned from all your reducers
- * */
+import {LOCATION_CHANGE} from 'react-router-redux';
+
 const initialRouteState = {location : null};
 const routeReducer = (state = initialRouteState , action) => {
     switch (action.type) {
-        case lOCATION_CHANGE:
+        case LOCATION_CHANGE:
             return state.merge({location : action.payload});
 
         default : 
@@ -16,8 +12,10 @@ const routeReducer = (state = initialRouteState , action) => {
     }
 }
 
-export default function createReducer() {
+
+export default function createReducer(asyncReducers) {
     return combineReducers({
-        route : routeReducer
-    })
-}
+      route: routeReducer,
+      ...asyncReducers,
+    });
+  }

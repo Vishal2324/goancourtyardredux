@@ -146,7 +146,8 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                {this.renderdom()}
+                {/* {this.renderdom()} */}
+                this text is from footer
             </div>
         );
     }
