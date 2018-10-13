@@ -17,9 +17,9 @@ class Footer extends Component {
         if (!this.props.header) {
           return (<div></div>);
         }
-        if (!this.props.home) {
-          return (<div></div>);
-        }
+        // if (!this.props.home) {
+        //   return (<div></div>);
+        // }
 
         return (
             <div>
@@ -146,8 +146,7 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                {/* {this.renderdom()} */}
-                this text is from footer
+                {this.renderdom()}
             </div>
         );
     }

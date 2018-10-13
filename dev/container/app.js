@@ -30,8 +30,8 @@ class App extends React.Component {
   }
   
   App.propTypes = {
-	location: PropTypes.object.isRequired,
-	children: PropTypes.element.isRequired,
+		location: PropTypes.object.isRequired,
+		children: PropTypes.element.isRequired,
   };
   
   

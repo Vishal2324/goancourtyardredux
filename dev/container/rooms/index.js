@@ -34,7 +34,7 @@ class Rooms extends Component {
     render() {
         return (
             <div>
-                abinash route 1
+                {this.renderdom()}
             </div>
         );
     }
