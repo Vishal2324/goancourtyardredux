@@ -1,7 +1,4 @@
-//import './utils/util';
-import universal from 'react-universal-component';
-import {injectReducer} from 'redux-injector';
-import {injectSaga} from 'redux-sagas-injector';
+import { getAsyncInjectors } from './utils/asyncInjectors';
 
 
 const loadModule = cb => (componentModule) => {
@@ -9,6 +6,7 @@ const loadModule = cb => (componentModule) => {
 };
 
 export default function createRoutes(store) {
+	const { injectReducer, injectSagas } = getAsyncInjectors(store); 
 
 	return [
 			{
@@ -18,19 +16,14 @@ export default function createRoutes(store) {
 					const importModules = Promise.all([
 						import('./container/home'),
 						import('./js/sagas/sagas'),
-						import('./js/reducers/index')
+						import('./js/reducers')
 					]);
 					const renderRoute = loadModule(cb);
-					importModules.then(([component, saga, reducer]) => {
-						const Component = universal(
-							props => {
-							injectSaga('homesaga', saga);
-							injectReducer('homereducer', reducer);
-							return component;
-						}).preload();
-						console.log(Component,'component')
-						renderRoute(Component);
-					})
+					importModules.then(([component, sagas, reducer]) => {
+						injectSagas(sagas.default);
+						injectReducer('spectelsClaim', reducer.default);
+						renderRoute(component);
+					  });
 					importModules.catch(()=>{
 						console.log('error ...')
 					})

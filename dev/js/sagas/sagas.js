@@ -80,4 +80,6 @@ function* loginApi(data) {
 }
 
 
-export default watcherSaga;
+export default [
+  watcherSaga,
+];
